@@ -1,0 +1,20 @@
+---
+---
+<section id="contact" class="section py-20">
+  <h2 class="text-3xl font-bold mb-6">Contact</h2>
+  <p class="text-white/80 mb-8">Have a role, collaboration, or just want to say hi? I’ll reply quickly.</p>
+
+  <form name="contact" method="POST" data-netlify="true" class="grid sm:grid-cols-2 gap-4">
+    <input type="hidden" name="form-name" value="contact" />
+    <input class="card" type="text" name="name" placeholder="Your name" required />
+    <input class="card" type="email" name="email" placeholder="Your email" required />
+    <textarea class="card sm:col-span-2 min-h-[140px]" name="message" placeholder="Message" required></textarea>
+    <div class="sm:col-span-2">
+      <button class="btn" type="submit">Send message</button>
+    </div>
+  </form>
+
+  <div class="mt-6 text-sm text-white/70">
+    Or email me directly: <a class="underline" href="mailto:alexszokolay02@gmail.com">alexszokolay02@gmail.com</a>
+  </div>
+</section>

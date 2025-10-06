@@ -1,0 +1,103 @@
+---
+const socials = [
+  { href: "mailto:alexszokolay02@gmail.com", label: "Email" },
+  { href: "tel:+14374240851", label: "Call" },
+  { href: "https://www.linkedin.com/in/alex-szokolay/", label: "LinkedIn" },
+];
+const NAME_LINE = "Hi, I’m Alex Szokolay";
+const OBJECTIVE = "Building reliable systems & thoughtful experiences.";
+---
+<section id="home" class="section grid md:grid-cols-2 items-center gap-8 py-20 md:py-28 min-h-[78vh]">
+  <div class="space-y-6">
+
+
+    <!-- NAME first & biggest -->
+   <h1 class="headline" aria-live="polite" aria-atomic="true">
+      <span
+        id="typed-name"
+        class="name-gradient type-caret"
+        data-full={NAME_LINE}>
+        {NAME_LINE}
+      </span>
+  </h1>
+
+    <!-- OBJECTIVE second -->
+    <p id="objective" class="text-xl sm:text-2xl text-white/90 reveal-up" style="animation-delay:.2s">
+      {OBJECTIVE}
+    </p>
+
+    <p class="text-white/80 reveal-up" style="animation-delay:.35s">
+      I’m Alex - a Toronto-based software developer (UofT B.Sc. 2025).
+      Recent experience across Health Canada’s digital systems (Jira, Nuxeo, IUCLID, Metabase, Oracle),
+      plus AI/Flask projects. I care about clarity, observability, and maintainability.
+    </p>
+
+    <div class="flex flex-wrap items-center gap-3 reveal-up" style="animation-delay:.45s">
+      <a class="btn" href="#experience">Experience</a>
+      {socials.map(s => (
+        <a href={s.href} class="btn-outline" rel="noopener" target={s.href.startsWith("http") ? "_blank" : undefined}>
+          {s.label}
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <div class="relative reveal-up" style="animation-delay:.3s">
+    <div class="absolute inset-0 -z-10 blur-3xl opacity-40"
+      style="background: radial-gradient(600px 200px at 30% 30%, var(--color-accent) 0%, transparent 80%),
+               radial-gradient(400px 200px at 80% 70%, var(--color-accent-2) 0%, transparent 70%);">
+    </div>
+    <div class="card">
+      <h3 class="text-xl font-semibold mb-2">Quick facts</h3>
+      <ul class="space-y-2 text-white/85">
+        <li>📍 Toronto, Ontario</li>
+        <li>🎓 UofT B.Sc. (CS, CogSci, Psychology), 2020–2025</li>
+        <li>🎓 IBM AI Developer Professional Certificate (Jul–Sep 2025)</li>
+        <li>🧰 Python, Flask, React, SQL, Oracle, Netlify/Astro</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- One-time typewriter on initial load -->
+  <script>
+  (function () {
+    const el = document.getElementById('typed-name');
+    if (!el) return;
+
+    const full = el.getAttribute('data-full') || "Hi, I’m Alex Szokolay"; // <-- string now
+    const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+
+    if (prefersReduced) {
+      el.textContent = full;
+      el.classList.remove('type-caret');
+      return;
+    }
+
+    if (sessionStorage.getItem('typed:name:done')) {
+      el.textContent = full;
+      el.classList.remove('type-caret');
+      return;
+    }
+
+    const speed = 34;
+    el.textContent = "";
+    let i = 0;
+
+    const typeNext = () => {
+      if (i <= full.length) {
+        el.textContent = full.slice(0, i);
+        i++;
+        setTimeout(typeNext, speed);
+      } else {
+        el.classList.remove('type-caret');
+        sessionStorage.setItem('typed:name:done', '1');
+      }
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", typeNext, { once: true });
+    } else {
+      typeNext();
+    }
+  })();
+</script>

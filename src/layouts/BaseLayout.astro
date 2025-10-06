@@ -1,0 +1,16 @@
+---
+const { title = "Alex Szokolay — Portfolio", description = "" } = Astro.props;
+import "../styles/globals.css"; // add this here (layout-level)
+---
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" />
+  </head>
+  <body class="min-h-screen bg-[--color-bg] text-white antialiased selection:bg-[--color-accent]/40">
+    <slot />
+  </body>
+</html>

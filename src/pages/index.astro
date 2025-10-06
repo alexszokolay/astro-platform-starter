@@ -1,21 +1,119 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavBar from "../components/NavBar.astro";
+import Hero from "../components/Hero.astro";
+import ExperienceItem from "../components/ExperienceItem.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import Contact from "../components/Contact.astro";
+import "../styles/globals.css";
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
+/* Resume data (quick to edit later) */
+const EXPERIENCE = [
+  {
+    role: "IT Software Solutions Developer",
+    company: "Health Canada",
+    date: "Jan 2025 – May 2025",
+    location: "Toronto, ON",
+    bullets: [
+      "Resolved Jira SSL trust by importing internal certs and coordinating rollout with SSC across dev/training/prod.",
+      "Fixed Metabase field truncation by altering PostgreSQL columns, updating 30+ views, and restoring permissions.",
+      "Restored Nuxeo test env by resolving Oracle DB connection issues with SSC; enabled future upgrade testing.",
+      "Contributed to IUCLID 6 deployment: Oracle DBs, Payara servers, secure FTP; authored architecture diagram for LTO.",
+      "Implemented Jira staging cloned from prod (DB setup, config updates, license adjustments).",
+    ],
+  },
+  {
+    role: "Student IT Software Solutions Developer",
+    company: "Health Canada",
+    date: "Aug 2023 – Dec 2024",
+    location: "Remote",
+    bullets: [
+      "Technical lead for Jira, Nuxeo, IUCLID, Metabase maintenance (configs, plugins, licenses, access control).",
+      "Built features across Angular.js/Java/HTML/CSS/SQL for enterprise health info systems.",
+      "Refactored Oracle SQL to improve search and backend performance.",
+      "Diagnosed MediaWiki VisualEditor issues, upgraded platform via Linux/SSH to restore reliability.",
+    ],
+  },
+  {
+    role: "Intern IT Software Solutions Developer",
+    company: "Health Canada",
+    date: "Jun 2023 – Aug 2023",
+    location: "Remote",
+    bullets: [
+      "Gathered requirements, prototyped, and shipped internal tools aligned to security/accessibility standards.",
+      "Reduced fraudulent submissions by ~40% via reCAPTCHA v3.",
+      "Built responsive UI components (React/JS/HTML/CSS) and improved query performance.",
+      "Improved team productivity with clearer Jira/Confluence specs and workflows.",
+    ],
+  },
+];
 
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+const PROJECTS = [
+  {
+    title: "Emotion-Aware City Chatbot",
+    year: "2023",
+    desc: "Python + Co:Here NLP bot that analyzes mood and recommends GTA spots to boost well-being.",
+    tags: ["Python", "NLP", "Co:Here", "OpenAI"],
+    link: "#",
+  },
+  {
+    title: "Shopify Assistant on Gadget",
+    year: "2023",
+    desc: "AI shopping assistant using OpenAI API to generate personalized product recommendations from purchase history.",
+    tags: ["OpenAI", "Gadget", "Shopify", "Full-stack"],
+    link: "#",
+  },
+  {
+    title: "IBM AI Dev Certificate",
+    year: "2025",
+    desc: "Built & deployed AI web apps (Python/Flask), testing & design patterns, chatbot APIs, cloud deploys.",
+    tags: ["Flask", "APIs", "AI"],
+    link: "#",
+  },
+];
 ---
+<BaseLayout>
+  <NavBar />
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
+  <Hero />
+
+  <section id="about" class="section py-20">
+    <h2 class="text-3xl font-bold mb-4">About</h2>
+    <p class="text-white/80 max-w-3xl">
+      University of Toronto B.Sc. (Hons) in Computer Science, Cognitive Science, and Psychology (2020–2025).
+      Coursework across Databases, AI, Software Design, Data Structures & Analysis, Stats with Computing,
+      Ethics in Computing, Computational Cognition, and Data & the Mind.
     </p>
-</Layout>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <span class="text-xs px-3 py-1 rounded-full border border-white/10">Python</span>
+      <span class="text-xs px-3 py-1 rounded-full border border-white/10">Flask</span>
+      <span class="text-xs px-3 py-1 rounded-full border border-white/10">React</span>
+      <span class="text-xs px-3 py-1 rounded-full border border-white/10">SQL · Oracle</span>
+      <span class="text-xs px-3 py-1 rounded-full border border-white/10">Astro · Netlify</span>
+      <span class="text-xs px-3 py-1 rounded-full border border-white/10">Jira · Nuxeo · IUCLID · Metabase</span>
+    </div>
+  </section>
+
+  <section id="experience" class="section py-20">
+    <h2 class="text-3xl font-bold mb-6">Experience</h2>
+    <div class="grid gap-6">
+      {EXPERIENCE.map((e) => <ExperienceItem {...e} />)}
+    </div>
+  </section>
+
+  <section id="projects" class="section py-20">
+    <h2 class="text-3xl font-bold mb-6">Projects</h2>
+    <div class="grid sm:grid-cols-2 gap-6">
+      {PROJECTS.map((p) => <ProjectCard {...p} />)}
+    </div>
+  </section>
+
+  <Contact />
+
+  <footer class="section py-10 border-t border-white/5 text-white/60 text-sm">
+    <div class="flex items-center justify-between">
+      <span>© {new Date().getFullYear()} Alex Szokolay</span>
+      <a href="#home" class="btn-outline">Back to top ↑</a>
+    </div>
+  </footer>
+</BaseLayout>
