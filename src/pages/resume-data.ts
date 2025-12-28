@@ -45,14 +45,15 @@ export const resume = {
     {
       company: "Health Canada",
       role: "IT Software Solutions Developer",
-      when: "Jan 2025 – May 2025",
+      when: "Jan 2025 – Present",
       where: "Toronto, ON",
       bullets: [
-        "Resolved Jira SSL trust by importing internal certs; coordinated rollout with Shared Services across dev/training/prod.",
-        "Fixed Metabase field truncation by altering PostgreSQL columns and updating 30+ views; restored permissions.",
-        "Restored Nuxeo test env by resolving Oracle DB connection issues with Shared Services.",
-        "Contributed to IUCLID 6 deployment (Oracle DBs, Payara, secure FTP); produced architecture diagram for security review.",
-        "Implemented Jira staging env cloned from prod (DB setup, config updates, license adjustments)."
+        "Led Jira platform modernization across Dev, Test, Training, and Prod, resolving SSL trust, certificate management, proxy configuration, and plugin compatibility issues.",
+        "Owned Jira upgrade planning from v8 → v10 LTS, evaluating migration paths, assessing plugin readiness, and defining a delivery strategy targeting March 2026.",
+        "Modernized Metabase reporting by fixing critical data truncation, altering PostgreSQL column types, and refactoring 30+ dependent materialized views; restored accurate reporting and permissions.",
+        "Diagnosed and restored a stalled ETL pipeline after a server update removed scheduled jobs by reverse-engineering ingestion workflows and re-establishing reliable refresh processes.",
+        "Restored Nuxeo test environment by resolving Oracle database connectivity issues in collaboration with Shared Services.",
+        "Contributed to IUCLID 6 deployment, configuring Oracle databases, Payara application servers, and secure FTP integrations; producing architecture documentation for security review."
       ]
     },
     {
